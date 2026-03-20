@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roofer Prospects | Certified Roofing CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="prospects.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="index.html">Certified<span>Roofing</span></a>
+      <button class="nav__hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__menu">
+        <ul class="nav__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="prospects.html" class="active">Prospects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Prospects Dashboard -->
+    <section class="prospects section">
+      <div class="container">
+        <span class="section-subtitle">CRM Dashboard</span>
+        <h2 class="section-title">Roofer Prospects</h2>
+        <p class="section-description">Manage your roofing prospects. Import from Excel, sync with Pipedrive, and export your pipeline.</p>
+
+        <!-- Connection Status -->
+        <div class="prospects__status" id="pipedrive-status">
+          <span class="status-dot status-dot--disconnected"></span>
+          <span id="status-text">Connecting to Pipedrive...</span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="prospects__actions">
+          <label class="btn btn-primary" for="xlsx-upload">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Import XLSX to Pipedrive
+          </label>
+          <input type="file" id="xlsx-upload" accept=".xlsx,.xls" hidden>
+
+          <button class="btn btn-outline-dark" id="btn-export">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export Pipedrive to XLSX
+          </button>
+
+          <button class="btn btn-outline-dark" id="btn-refresh">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Refresh
+          </button>
+        </div>
+
+        <!-- Import Progress -->
+        <div class="prospects__progress" id="import-progress" hidden>
+          <div class="progress-bar">
+            <div class="progress-bar__fill" id="progress-fill"></div>
+          </div>
+          <p id="progress-text">Importing prospects...</p>
+        </div>
+
+        <!-- Column Mapping Modal -->
+        <div class="modal-overlay" id="mapping-modal" hidden>
+          <div class="modal">
+            <h3>Map Spreadsheet Columns</h3>
+            <p>Match your spreadsheet columns to Pipedrive fields.</p>
+            <div id="mapping-fields" class="mapping-fields"></div>
+            <div class="modal__actions">
+              <button class="btn btn-outline-dark" id="btn-cancel-map">Cancel</button>
+              <button class="btn btn-primary" id="btn-confirm-map">Import Prospects</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="prospects__stats" id="prospects-stats">
+          <div class="stat-card">
+            <span class="stat-card__number" id="stat-total">-</span>
+            <span class="stat-card__label">Total Prospects</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card__number" id="stat-open">-</span>
+            <span class="stat-card__label">Open Deals</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card__number" id="stat-won">-</span>
+            <span class="stat-card__label">Won Deals</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card__number" id="stat-value">-</span>
+            <span class="stat-card__label">Pipeline Value</span>
+          </div>
+        </div>
+
+        <!-- Search & Filter -->
+        <div class="prospects__filters">
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="search-input" placeholder="Search prospects...">
+          </div>
+          <select id="filter-status" class="filter-select">
+            <option value="all">All Stages</option>
+          </select>
+        </div>
+
+        <!-- Prospects Table -->
+        <div class="prospects__table-wrap">
+          <table class="prospects__table" id="prospects-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Service</th>
+                <th>Stage</th>
+                <th>Value</th>
+                <th>Added</th>
+              </tr>
+            </thead>
+            <tbody id="prospects-body">
+              <tr>
+                <td colspan="6" class="prospects__empty">Loading prospects from Pipedrive...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toast-container"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p>&copy; 2026 Certified Roofing. All rights reserved.</p>
+        <p>Licensed & Insured</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="prospects.js"></script>
+</body>
+</html>
