@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Control | Certified Roofing Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div class="login" id="login-screen">
+    <div class="login__card">
+      <h1 class="login__logo">Certified<span>Roofing</span></h1>
+      <p class="login__subtitle">Remote Control Panel</p>
+      <form class="login__form" id="login-form">
+        <div class="login__field">
+          <label for="pin">Enter Admin PIN</label>
+          <input type="password" id="pin" maxlength="6" placeholder="000000" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Access Dashboard</button>
+        <p class="login__error" id="login-error" hidden>Invalid PIN. Please try again.</p>
+        <p class="login__hint">First time? Default PIN is <strong>1234</strong></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard" id="dashboard" hidden>
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar__left">
+        <h1 class="topbar__logo">Certified<span>Roofing</span></h1>
+        <span class="topbar__badge">Remote Control</span>
+      </div>
+      <div class="topbar__right">
+        <a href="index.html" class="btn btn-outline-sm" target="_blank">View Site</a>
+        <button class="btn btn-ghost" id="btn-change-pin">Change PIN</button>
+        <button class="btn btn-ghost" id="btn-logout">Logout</button>
+      </div>
+    </header>
+
+    <!-- Sidebar + Content -->
+    <div class="dashboard__layout">
+      <nav class="sidebar" id="sidebar">
+        <button class="sidebar__toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="sidebar__nav">
+          <li><a href="#" class="sidebar__link active" data-section="hero">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Hero Section
+          </a></li>
+          <li><a href="#" class="sidebar__link" data-section="services">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            Services
+          </a></li>
+          <li><a href="#" class="sidebar__link" data-section="about">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            About
+          </a></li>
+          <li><a href="#" class="sidebar__link" data-section="testimonials">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Testimonials
+          </a></li>
+          <li><a href="#" class="sidebar__link" data-section="areas">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Service Areas
+          </a></li>
+          <li><a href="#" class="sidebar__link" data-section="contact">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/></svg>
+            Contact Info
+          </a></li>
+        </ul>
+        <div class="sidebar__footer">
+          <button class="btn btn-danger-sm btn-block" id="btn-reset-all">Reset All to Defaults</button>
+        </div>
+      </nav>
+
+      <main class="content" id="content">
+        <!-- Hero Section Editor -->
+        <section class="panel" id="panel-hero">
+          <div class="panel__header">
+            <h2>Hero Section</h2>
+            <p>Edit the main landing section visitors see first.</p>
+          </div>
+          <div class="panel__body">
+            <div class="field">
+              <label for="hero-badge">Badge Text</label>
+              <input type="text" id="hero-badge" placeholder="Licensed & Insured...">
+            </div>
+            <div class="field">
+              <label for="hero-headline">Headline</label>
+              <input type="text" id="hero-headline" placeholder="Protecting Your Property...">
+            </div>
+            <div class="field">
+              <label for="hero-subtext">Subtext</label>
+              <textarea id="hero-subtext" rows="3" placeholder="Professional residential and commercial..."></textarea>
+            </div>
+            <div class="field">
+              <label for="hero-cta-primary">Primary Button Text</label>
+              <input type="text" id="hero-cta-primary" placeholder="Get Free Estimate">
+            </div>
+            <div class="field">
+              <label for="hero-cta-secondary">Secondary Button Text</label>
+              <input type="text" id="hero-cta-secondary" placeholder="Call Now">
+            </div>
+            <div class="panel__actions">
+              <button class="btn btn-primary" data-save="hero">Save Changes</button>
+              <button class="btn btn-ghost" data-reset="hero">Reset Section</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Editor -->
+        <section class="panel" id="panel-services" hidden>
+          <div class="panel__header">
+            <h2>Services</h2>
+            <p>Manage your roofing service offerings.</p>
+          </div>
+          <div class="panel__body">
+            <div class="field">
+              <label for="services-subtitle">Section Subtitle</label>
+              <input type="text" id="services-subtitle" placeholder="What We Do">
+            </div>
+            <div class="field">
+              <label for="services-title">Section Title</label>
+              <input type="text" id="services-title" placeholder="Our Roofing Services">
+            </div>
+            <div class="field">
+              <label for="services-description">Section Description</label>
+              <textarea id="services-description" rows="2"></textarea>
+            </div>
+            <div class="divider"></div>
+            <div class="services-list" id="services-list"></div>
+            <button class="btn btn-outline-sm" id="btn-add-service">+ Add Service</button>
+            <div class="panel__actions">
+              <button class="btn btn-primary" data-save="services">Save Changes</button>
+              <button class="btn btn-ghost" data-reset="services">Reset Section</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- About Editor -->
+        <section class="panel" id="panel-about" hidden>
+          <div class="panel__header">
+            <h2>About / Why Choose Us</h2>
+            <p>Edit company description, values, and stats.</p>
+          </div>
+          <div class="panel__body">
+            <div class="field">
+              <label for="about-subtitle">Section Subtitle</label>
+              <input type="text" id="about-subtitle" placeholder="Why Choose Us">
+            </div>
+            <div class="field">
+              <label for="about-title">Section Title</label>
+              <input type="text" id="about-title" placeholder="Farmington's Trusted Roofing Experts">
+            </div>
+            <div class="field">
+              <label for="about-paragraph1">Paragraph 1</label>
+              <textarea id="about-paragraph1" rows="4"></textarea>
+            </div>
+            <div class="field">
+              <label for="about-paragraph2">Paragraph 2</label>
+              <textarea id="about-paragraph2" rows="3"></textarea>
+            </div>
+            <div class="divider"></div>
+            <h3 class="panel__sub-title">Value Points</h3>
+            <div class="values-list" id="values-list"></div>
+            <button class="btn btn-outline-sm" id="btn-add-value">+ Add Value Point</button>
+            <div class="divider"></div>
+            <h3 class="panel__sub-title">Stats</h3>
+            <div class="stats-grid" id="stats-grid"></div>
+            <div class="panel__actions">
+              <button class="btn btn-primary" data-save="about">Save Changes</button>
+              <button class="btn btn-ghost" data-reset="about">Reset Section</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonials Editor -->
+        <section class="panel" id="panel-testimonials" hidden>
+          <div class="panel__header">
+            <h2>Testimonials</h2>
+            <p>Manage customer reviews and testimonials.</p>
+          </div>
+          <div class="panel__body">
+            <div class="testimonials-list" id="testimonials-list"></div>
+            <button class="btn btn-outline-sm" id="btn-add-testimonial">+ Add Testimonial</button>
+            <div class="panel__actions">
+              <button class="btn btn-primary" data-save="testimonials">Save Changes</button>
+              <button class="btn btn-ghost" data-reset="testimonials">Reset Section</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Service Areas Editor -->
+        <section class="panel" id="panel-areas" hidden>
+          <div class="panel__header">
+            <h2>Service Areas</h2>
+            <p>Manage the locations you serve.</p>
+          </div>
+          <div class="panel__body">
+            <div class="field">
+              <label for="areas-title">Section Title</label>
+              <input type="text" id="areas-title" placeholder="Serving Farmington & the Four Corners Region">
+            </div>
+            <div class="field">
+              <label for="areas-description">Section Description</label>
+              <textarea id="areas-description" rows="2"></textarea>
+            </div>
+            <div class="divider"></div>
+            <h3 class="panel__sub-title">Areas</h3>
+            <div class="areas-tags" id="areas-tags"></div>
+            <div class="areas-add">
+              <input type="text" id="new-area-input" placeholder="Enter area name...">
+              <button class="btn btn-outline-sm" id="btn-add-area">Add</button>
+            </div>
+            <div class="panel__actions">
+              <button class="btn btn-primary" data-save="areas">Save Changes</button>
+              <button class="btn btn-ghost" data-reset="areas">Reset Section</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Info Editor -->
+        <section class="panel" id="panel-contact" hidden>
+          <div class="panel__header">
+            <h2>Contact Information</h2>
+            <p>Update business contact details shown on the website.</p>
+          </div>
+          <div class="panel__body">
+            <div class="field-row">
+              <div class="field">
+                <label for="contact-phone">Phone Number</label>
+                <input type="tel" id="contact-phone" placeholder="(505) 402-6288">
+              </div>
+              <div class="field">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" placeholder="brandon.certifiedroofing@yahoo.com">
+              </div>
+            </div>
+            <div class="field">
+              <label for="contact-address">Address</label>
+              <input type="text" id="contact-address" placeholder="310 Airport Drive, Farmington, NM">
+            </div>
+            <div class="field">
+              <label for="contact-hours">Business Hours</label>
+              <textarea id="contact-hours" rows="3" placeholder="Mon-Fri: 7:00 AM - 6:00 PM..."></textarea>
+            </div>
+            <div class="panel__actions">
+              <button class="btn btn-primary" data-save="contact">Save Changes</button>
+              <button class="btn btn-ghost" data-reset="contact">Reset Section</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Change PIN Modal -->
+  <div class="modal-overlay" id="pin-modal" hidden>
+    <div class="modal">
+      <h3>Change Admin PIN</h3>
+      <form id="pin-form">
+        <div class="field">
+          <label for="current-pin">Current PIN</label>
+          <input type="password" id="current-pin" maxlength="6">
+        </div>
+        <div class="field">
+          <label for="new-pin">New PIN</label>
+          <input type="password" id="new-pin" maxlength="6">
+        </div>
+        <div class="field">
+          <label for="confirm-pin">Confirm New PIN</label>
+          <input type="password" id="confirm-pin" maxlength="6">
+        </div>
+        <div class="modal__actions">
+          <button type="submit" class="btn btn-primary">Update PIN</button>
+          <button type="button" class="btn btn-ghost" id="btn-cancel-pin">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirm Reset Modal -->
+  <div class="modal-overlay" id="reset-modal" hidden>
+    <div class="modal">
+      <h3>Reset to Defaults?</h3>
+      <p>This will remove all your customizations and restore the original website content. This cannot be undone.</p>
+      <div class="modal__actions">
+        <button class="btn btn-danger" id="btn-confirm-reset">Yes, Reset Everything</button>
+        <button class="btn btn-ghost" id="btn-cancel-reset">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
